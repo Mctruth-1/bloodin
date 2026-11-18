@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloodin — Know Your Type. Protect Your Future.</title>
+  <style>
+    :root {
+      --crimson: #D92D20;
+      --crimson-dark: #B42318;
+      --crimson-light: #FEF3F2;
+      --crimson-border: #FECDCA;
+      --teal: #0E9384;
+      --teal-dark: #0A7569;
+      --teal-light: #F0FDF9;
+      --teal-border: #99F6E0;
+      --amber: #D97706;
+      --amber-light: #FFFBEB;
+      --amber-border: #FDE68A;
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --slate-900: #0F172A;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif; }
+    body {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: var(--slate-900);
+    }
+    .phone-frame {
+      width: 100%;
+      max-width: 430px;
+      height: 860px;
+      background: var(--bg);
+      border-radius: 36px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.45), 0 0 0 8px #334155;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .app-header {
+      background: var(--surface);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .brand-row { display: flex; align-items: center; gap: 10px; }
+    .brand-title { font-size: 20px; font-weight: 900; color: var(--slate-900); letter-spacing: -0.3px; }
+    .brand-tagline { font-size: 11px; font-weight: 600; color: var(--slate-500); }
+    .active-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--crimson-light);
+      border: 1px solid var(--crimson-border);
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .active-pill .bg-txt { font-weight: 900; font-size: 13px; color: var(--crimson); }
+    .active-pill .gt-txt { font-weight: 900; font-size: 13px; color: var(--teal); }
+    .viewport {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .tab-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--slate-200);
+      display: flex;
+      padding: 8px 6px;
+    }
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+    }
+    .tab-badge {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 8px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+    .tab-btn.active .tab-badge {
+      background: var(--crimson);
+      color: #fff;
+    }
+    .tab-label { font-size: 10.5px; font-weight: 600; color: var(--slate-500); }
+    .tab-btn.active .tab-label { color: var(--crimson); font-weight: 800; }
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--slate-200);
+      margin-bottom: 14px;
+    }
+    .h2 { font-size: 19px; font-weight: 800; margin-bottom: 4px; }
+    .sub { font-size: 12.5px; color: var(--slate-600); margin-bottom: 14px; line-height: 1.45; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+    .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+    .choice-btn {
+      padding: 11px 6px;
+      border-radius: 11px;
+      border: 1.5px solid var(--slate-200);
+      background: var(--surface);
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      color: var(--slate-900);
+    }
+    .choice-btn.selected-crimson { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+    .choice-btn.selected-teal { background: var(--teal); border-color: var(--teal); color: #fff; }
+    .compat-badge {
+      padding: 10px 4px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid;
+    }
+    .compat-safe { background: var(--teal-light); border-color: var(--teal-border); color: var(--teal-dark); }
+    .compat-unsafe { background: var(--crimson-light); border-color: var(--crimson-border); color: var(--crimson-dark); opacity: 0.72; }
+    .punnett-grid { display: grid; grid-template-columns: 70px 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .p-head { background: var(--slate-900); color: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; padding: 10px; }
+    .p-cell { border-radius: 12px; padding: 14px 8px; text-align: center; font-weight: 900; font-size: 20px; border: 1.5px solid; }
+    .disclaimer {
+      background: var(--slate-100);
+      border-top: 1px solid var(--slate-200);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      color: var(--slate-600);
+      line-height: 1.45;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Header -->
+    <div class="app-header">
+      <div class="brand-row">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="#D92D20"/>
+          <path d="M32 11C32 11 17 27.2 17 38.5C17 46.7843 23.7157 53.5 32 53.5C40.2843 53.5 47 46.7843 47 38.5C47 27.2 32 11 32 11Z" fill="#FFFFFF"/>
+          <path d="M32 25V45M23 35H41" stroke="#D92D20" stroke-width="4.2" stroke-linecap="round"/>
+          <path d="M26 28C29 31 35 31 38 28M26 42C29 39 35 39 38 42" stroke="#D92D20" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="brand-title">Bloodin</div>
+          <div class="brand-tagline">Know Your Type. Protect Your Future.</div>
+        </div>
+      </div>
+      <div class="active-pill" onclick="switchTab('idcard')">
+        <span class="bg-txt" id="header-bg">O-</span>
+        <span style="color:#FECDCA">|</span>
+        <span class="gt-txt" id="header-gt">AS</span>
+      </div>
+    </div>
+
+    <!-- Main Content Viewport -->
+    <div class="viewport" id="viewport"></div>
+
+    <!-- Bottom Tab Navigation -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tab-transfusion" onclick="switchTab('transfusion')">
+        <span class="tab-badge">ABO</span>
+        <span class="tab-label">Transfusion</span>
+      </button>
+      <button class="tab-btn" id="tab-genotype" onclick="switchTab('genotype')">
+        <span class="tab-badge">DNA</span>
+        <span class="tab-label">Genotype</span>
+      </button>
+      <button class="tab-btn" id="tab-idcard" onclick="switchTab('idcard')">
+        <span class="tab-badge">ICE</span>
+        <span class="tab-label">Bloodin ID</span>
+      </button>
+      <button class="tab-btn" id="tab-learn" onclick="switchTab('learn')">
+        <span class="tab-badge">LAB</span>
+        <span class="tab-label">Lab & Guide</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const BLOOD_GROUPS = ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'];
+    const GENOTYPES = ['AA', 'AS', 'AC', 'SS', 'SC', 'CC'];
+
+    const BLOOD_MAP = {
+      'O-': { donate: ['O-','O+','A-','A+','B-','B+','AB-','AB+'], receive: ['O-'], note: 'Universal Red Cell Donor. Lacks A, B, and RhD surface antigens.' },
+      'O+': { donate: ['O+','A+','B+','AB+'], receive: ['O-','O+'], note: 'Carries RhD antigen without A or B antigens; can donate to any Rh+ patient.' },
+      'A-': { donate: ['A-','A+','AB-','AB+'], receive: ['O-','A-'], note: 'Presents A antigen without RhD; Anti-B antibodies in plasma.' },
+      'A+': { donate: ['A+','AB+'], receive: ['O-','O+','A-','A+'], note: 'Presents A and RhD antigens alongside Anti-B plasma antibodies.' },
+      'B-': { donate: ['B-','B+','AB-','AB+'], receive: ['O-','B-'], note: 'Presents B antigen without RhD; Anti-A antibodies in plasma.' },
+      'B+': { donate: ['B+','AB+'], receive: ['O-','O+','B-','B+'], note: 'Presents B and RhD antigens alongside Anti-A plasma antibodies.' },
+      'AB-': { donate: ['AB-','AB+'], receive: ['O-','A-','B-','AB-'], note: 'Presents A and B antigens without RhD; no Anti-A or Anti-B antibodies.' },
+      'AB+': { donate: ['AB+'], receive: ['O-','O+','A-','A+','B-','B+','AB-','AB+'], note: 'Universal Red Cell Recipient. No Anti-A, Anti-B, or Anti-RhD antibodies.' }
+    };
+
+    let state = {
+      tab: 'transfusion',
+      selectedBg: 'O-',
+      partnerA: 'AS',
+      partnerB: 'AS'
+    };
+
+    function normalizeAllele(a, b) {
+      const order = { A: 1, S: 2, C: 3 };
+      return [a, b].sort((x, y) => order[x] - order[y]).join('');
+    }
+
+    function switchTab(tab) {
+      state.tab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      render();
+    }
+
+    function selectBg(bg) {
+      state.selectedBg = bg;
+      document.getElementById('header-bg').textContent = bg;
+      render();
+    }
+
+    function selectPartner(which, gt) {
+      state[which] = gt;
+      if (which === 'partnerA') document.getElementById('header-gt').textContent = gt;
+      render();
+    }
+
+    function render() {
+      const vp = document.getElementById('viewport');
+      const disclaimer = `<div class="disclaimer"><strong>CLINICAL GUIDANCE NOTE:</strong> Bloodin results are for educational and planning purposes only and must be confirmed via laboratory testing (such as Hemoglobin Electrophoresis).</div>`;
+
+      if (state.tab === 'transfusion') {
+        const info = BLOOD_MAP[state.selectedBg];
+        vp.innerHTML = `
+          <div class="h2">Blood Transfusion Checker</div>
+          <div class="sub">Select a Blood Group to inspect Red Blood Cell (RBC) donor & recipient compatibility.</div>
+          <div class="grid-4">
+            ${BLOOD_GROUPS.map(bg => `<button class="choice-btn ${state.selectedBg === bg ? 'selected-crimson' : ''}" onclick="selectBg('${bg}')">${bg}</button>`).join('')}
+          </div>
+          <div class="card" style="background:${state.selectedBg === 'O-' ? '#F0FDF9' : state.selectedBg === 'AB+' ? '#FEF3F2' : '#FFF'}">
+            <div style="font-size:11px;font-weight:800;color:#D92D20;margin-bottom:4px">PHYSIOLOGICAL SUMMARY (${state.selectedBg})</div>
+            <div style="font-size:13px;color:#334155;line-height:1.45">${info.note}</div>
+          </div>
+          <div class="card">
+            <div style="font-size:14px;font-weight:800;margin-bottom:10px">Who ${state.selectedBg} Can DONATE To (${info.donate.length}/8)</div>
+            <div class="grid-4" style="margin-bottom:0">
+              ${BLOOD_GROUPS.map(t => {
+                const ok = info.donate.includes(t);
+                return `<div class="compat-badge ${ok ? 'compat-safe' : 'compat-unsafe'}"><div style="font-size:16px;font-weight:900">${t}</div><div style="font-size:9.5px;font-weight:700">${ok ? 'Compatible' : 'Incompatible'}</div></div>`;
+              }).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <div style="font-size:14px;font-weight:800;margin-bottom:10px">Who ${state.selectedBg} Can RECEIVE From (${info.receive.length}/8)</div>
+            <div class="grid-4" style="margin-bottom:0">
+              ${BLOOD_GROUPS.map(t => {
+                const ok = info.receive.includes(t);
+                return `<div class="compat-badge ${ok ? 'compat-safe' : 'compat-unsafe'}"><div style="font-size:16px;font-weight:900">${t}</div><div style="font-size:9.5px;font-weight:700">${ok ? 'Safe Donor' : 'Incompatible'}</div></div>`;
+              }).join('')}
+            </div>
+          </div>
+          ${disclaimer}
+        `;
+      } else if (state.tab === 'genotype') {
+        const a = state.partnerA, b = state.partnerB;
+        const cells = [
+          normalizeAllele(a[0], b[0]),
+          normalizeAllele(a[0], b[1]),
+          normalizeAllele(a[1], b[0]),
+          normalizeAllele(a[1], b[1])
+        ];
+        const counts = {};
+        cells.forEach(c => counts[c] = (counts[c] || 0) + 25);
+        const highRisk = (counts['SS'] || 0) + (counts['SC'] || 0);
+        vp.innerHTML = `
+          <div class="h2">Partner Genotype Calculator</div>
+          <div class="sub">Select Partner A and Partner B hemoglobin genotypes for exact Punnett Square probabilities.</div>
+          <div class="card">
+            <div style="font-size:11px;font-weight:800;color:#475569;margin-bottom:6px">PARTNER A GENOTYPE</div>
+            <div class="grid-6" style="margin-bottom:12px">
+              ${GENOTYPES.map(g => `<button class="choice-btn ${a === g ? 'selected-crimson' : ''}" onclick="selectPartner('partnerA','${g}')">${g}</button>`).join('')}
+            </div>
+            <div style="font-size:11px;font-weight:800;color:#475569;margin-bottom:6px">PARTNER B GENOTYPE</div>
+            <div class="grid-6">
+              ${GENOTYPES.map(g => `<button class="choice-btn ${b === g ? 'selected-teal' : ''}" onclick="selectPartner('partnerB','${g}')">${g}</button>`).join('')}
+            </div>
+          </div>
+          <div class="card" style="background:${highRisk > 0 ? '#FEF3F2' : '#F0FDF9'};border-color:${highRisk > 0 ? '#D92D20' : '#0E9384'}">
+            <div style="font-size:11px;font-weight:900;color:${highRisk > 0 ? '#D92D20' : '#0E9384'}">${highRisk > 0 ? 'HIGH RISK FOR SICKLE CELL DISEASE (' + highRisk + '% PER PREGNANCY)' : 'LOW RISK / SAFE GENETIC PAIRING'}</div>
+            <div style="font-size:12.5px;color:#334155;margin-top:4px;line-height:1.45">
+              ${Object.entries(counts).map(([k, v]) => `<strong>${v}% ${k}</strong>`).join(' • ')}
+            </div>
+          </div>
+          <div class="card">
+            <div style="font-size:14px;font-weight:800">Punnett Square (${a} × ${b})</div>
+            <div class="punnett-grid">
+              <div class="p-head" style="background:#E2E8F0;color:#475569">A \\ B</div>
+              <div class="p-head">Allele ${b[0]}</div>
+              <div class="p-head">Allele ${b[1]}</div>
+              <div class="p-head">Allele ${a[0]}</div>
+              <div class="p-cell ${cells[0]==='SS'||cells[0]==='SC' ? 'compat-unsafe' : 'compat-safe'}">${cells[0]}<div style="font-size:10px">25%</div></div>
+              <div class="p-cell ${cells[1]==='SS'||cells[1]==='SC' ? 'compat-unsafe' : 'compat-safe'}">${cells[1]}<div style="font-size:10px">25%</div></div>
+              <div class="p-head">Allele ${a[1]}</div>
+              <div class="p-cell ${cells[2]==='SS'||cells[2]==='SC' ? 'compat-unsafe' : 'compat-safe'}">${cells[2]}<div style="font-size:10px">25%</div></div>
+              <div class="p-cell ${cells[3]==='SS'||cells[3]==='SC' ? 'compat-unsafe' : 'compat-safe'}">${cells[3]}<div style="font-size:10px">25%</div></div>
+            </div>
+          </div>
+          ${disclaimer}
+        `;
+      } else if (state.tab === 'idcard') {
+        vp.innerHTML = `
+          <div class="h2">Bloodin Digital Emergency ID</div>
+          <div class="sub">High-contrast lock-screen-ready medical card.</div>
+          <div style="background:#0F172A;border-radius:20px;overflow:hidden;border:2px solid #D92D20;color:#fff">
+            <div style="background:#D92D20;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-weight:900;font-size:14px;letter-spacing:0.6px">BLOODIN EMERGENCY ID</div>
+              <div style="background:#fff;color:#D92D20;font-weight:900;font-size:11px;padding:3px 8px;border-radius:6px">ICE</div>
+            </div>
+            <div style="padding:18px">
+              <div style="font-size:10px;color:#94A3B8;font-weight:800">PATIENT NAME</div>
+              <div style="font-size:22px;font-weight:900;margin-bottom:14px">Amara Okafor</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+                <div style="background:#D92D20;padding:12px;border-radius:12px;text-align:center">
+                  <div style="font-size:10px;font-weight:800">BLOOD TYPE</div>
+                  <div style="font-size:32px;font-weight:900">${state.selectedBg}</div>
+                </div>
+                <div style="background:#0E9384;padding:12px;border-radius:12px;text-align:center">
+                  <div style="font-size:10px;font-weight:800">GENOTYPE</div>
+                  <div style="font-size:32px;font-weight:900">${state.partnerA}</div>
+                </div>
+              </div>
+              <div style="background:#1E293B;padding:10px 12px;border-radius:10px;margin-bottom:10px">
+                <div style="font-size:9.5px;color:#94A3B8;font-weight:800">ALLERGIES</div>
+                <div style="font-size:13px;color:#FCA5A5;font-weight:800">Penicillin, Latex</div>
+              </div>
+              <div style="background:#1E293B;padding:10px 12px;border-radius:10px">
+                <div style="font-size:9.5px;color:#94A3B8;font-weight:800">EMERGENCY CONTACT</div>
+                <div style="font-size:13px;font-weight:700">Dr. Tunde Okafor • +1 (555) 234-8910</div>
+              </div>
+            </div>
+          </div>
+          ${disclaimer}
+        `;
+      } else {
+        vp.innerHTML = `
+          <div class="h2">Educational Hub & Lab Finder</div>
+          <div class="sub">Plain-language hematology cards and nearby diagnostic labs.</div>
+          <div class="card" style="background:#0F172A;color:#fff">
+            <div style="font-size:10px;font-weight:800;color:#5EEAD4;margin-bottom:4px">CONFIRMATORY ELECTROPHORESIS</div>
+            <div style="font-size:16px;font-weight:800;margin-bottom:6px">Locate Accredited Diagnostic Labs</div>
+            <div style="font-size:12px;color:#94A3B8">Metro Hematology Reference Lab (1.4 km) • Lifeline Diagnostics (2.8 km)</div>
+          </div>
+          <div class="card">
+            <div style="font-size:10px;font-weight:800;color:#D92D20">FUNDAMENTALS</div>
+            <div style="font-size:15px;font-weight:800;margin:4px 0">Blood Group (ABO/Rh) vs. Genotype</div>
+            <div style="font-size:12.5px;color:#475569;line-height:1.45">ABO/Rh determines surface antigens for safe blood transfusion, while Genotype (AA, AS, SS) determines inherited hemoglobin structure.</div>
+          </div>
+          ${disclaimer}
+        `;
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>

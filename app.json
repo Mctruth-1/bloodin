@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Bloodin",
+    "slug": "bloodin",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#D92D20",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bloodin.health"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#D92D20"
+      },
+      "package": "com.bloodin.health"
+    }
+  }
+}

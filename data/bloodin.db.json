@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": "user-amara-001",
+      "name": "Amara Okafor",
+      "email": "amara@bloodin.health",
+      "passwordHash": "0e6195cef4f80ff4bc66fbf29aa438e3fea842f3bffef7fbeb6e6a8273d83c7d",
+      "bloodGroup": "O-",
+      "genotype": "AS",
+      "allergies": "Penicillin, Latex",
+      "emergencyContactName": "Dr. Tunde Okafor (Spouse)",
+      "emergencyContactPhone": "+1 (555) 234-8910",
+      "createdAt": "2026-11-10T09:00:00Z"
+    }
+  ],
+  "sessions": {
+    "68e40a87b702cccb5f90d5da3773a1c4e5aab4f2e2eae48c": "user-amara-001"
+  },
+  "tracks": [
+    {
+      "id": "track-101",
+      "userId": "user-amara-001",
+      "category": "Hb Level (g/dL)",
+      "title": "Routine Complete Blood Count (CBC)",
+      "value": "13.4 g/dL",
+      "notes": "Normal hemoglobin concentration; steady hydration maintained.",
+      "recordedAt": "2026-11-12 08:30"
+    },
+    {
+      "id": "track-102",
+      "userId": "user-amara-001",
+      "category": "Blood Donation",
+      "title": "Universal O- Whole Blood Donation",
+      "value": "450 mL Unit",
+      "notes": "Donated at Metro Regional Blood Center. Post-donation iron supplement started.",
+      "recordedAt": "2026-11-15 14:15"
+    },
+    {
+      "id": "track-103",
+      "userId": "user-amara-001",
+      "category": "Lab / Electrophoresis",
+      "title": "HPLC Hemoglobin Fractionation",
+      "value": "HbA 58.2% | HbS 38.4% | HbA2 3.4%",
+      "notes": "Confirmed AS carrier trait via accredited HPLC reference lab.",
+      "recordedAt": "2026-11-17 11:00"
+    }
+  ]
+}

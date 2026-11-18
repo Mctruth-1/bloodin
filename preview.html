@@ -23,6 +23,7 @@
       --slate-700: #334155;
       --slate-600: #475569;
       --slate-500: #64748B;
+      --slate-400: #94A3B8;
       --slate-200: #E2E8F0;
       --slate-100: #F1F5F9;
     }
@@ -33,13 +34,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 16px;
       color: var(--slate-900);
     }
     .phone-frame {
       width: 100%;
-      max-width: 430px;
-      height: 860px;
+      max-width: 435px;
+      height: 870px;
       background: var(--bg);
       border-radius: 36px;
       box-shadow: 0 25px 60px rgba(0,0,0,0.45), 0 0 0 8px #334155;
@@ -49,27 +50,38 @@
     }
     .app-header {
       background: var(--surface);
-      padding: 14px 18px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--slate-200);
     }
     .brand-row { display: flex; align-items: center; gap: 10px; }
-    .brand-title { font-size: 20px; font-weight: 900; color: var(--slate-900); letter-spacing: -0.3px; }
-    .brand-tagline { font-size: 11px; font-weight: 600; color: var(--slate-500); }
+    .brand-title { font-size: 19px; font-weight: 900; color: var(--slate-900); letter-spacing: -0.3px; }
+    .brand-tagline { font-size: 10.5px; font-weight: 600; color: var(--slate-500); }
+    .header-actions { display: flex; align-items: center; gap: 6px; }
     .active-pill {
       display: flex;
       align-items: center;
       gap: 6px;
       background: var(--crimson-light);
       border: 1px solid var(--crimson-border);
-      padding: 5px 11px;
+      padding: 5px 10px;
       border-radius: 999px;
       cursor: pointer;
     }
-    .active-pill .bg-txt { font-weight: 900; font-size: 13px; color: var(--crimson); }
-    .active-pill .gt-txt { font-weight: 900; font-size: 13px; color: var(--teal); }
+    .active-pill .bg-txt { font-weight: 900; font-size: 12.5px; color: var(--crimson); }
+    .active-pill .gt-txt { font-weight: 900; font-size: 12.5px; color: var(--teal); }
+    .logout-btn {
+      border: 1px solid var(--slate-200);
+      background: var(--slate-100);
+      color: var(--slate-700);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
     .viewport {
       flex: 1;
       overflow-y: auto;
@@ -79,7 +91,7 @@
       background: var(--surface);
       border-top: 1px solid var(--slate-200);
       display: flex;
-      padding: 8px 6px;
+      padding: 8px 4px;
     }
     .tab-btn {
       flex: 1;
@@ -92,9 +104,9 @@
       cursor: pointer;
     }
     .tab-badge {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 8px;
       background: var(--slate-100);
       color: var(--slate-600);
@@ -103,12 +115,12 @@
       background: var(--crimson);
       color: #fff;
     }
-    .tab-label { font-size: 10.5px; font-weight: 600; color: var(--slate-500); }
+    .tab-label { font-size: 10px; font-weight: 600; color: var(--slate-500); }
     .tab-btn.active .tab-label { color: var(--crimson); font-weight: 800; }
     .card {
       background: var(--surface);
       border-radius: 16px;
-      padding: 16px;
+      padding: 15px;
       border: 1px solid var(--slate-200);
       margin-bottom: 14px;
     }
@@ -117,12 +129,12 @@
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
     .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
     .choice-btn {
-      padding: 11px 6px;
-      border-radius: 11px;
+      padding: 10px 6px;
+      border-radius: 10px;
       border: 1.5px solid var(--slate-200);
       background: var(--surface);
       font-weight: 800;
-      font-size: 15px;
+      font-size: 14px;
       cursor: pointer;
       color: var(--slate-900);
     }
@@ -139,6 +151,66 @@
     .punnett-grid { display: grid; grid-template-columns: 70px 1fr 1fr; gap: 8px; margin-top: 10px; }
     .p-head { background: var(--slate-900); color: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; padding: 10px; }
     .p-cell { border-radius: 12px; padding: 14px 8px; text-align: center; font-weight: 900; font-size: 20px; border: 1.5px solid; }
+    .input-label { display: block; font-size: 11.5px; font-weight: 700; color: var(--slate-700); margin: 10px 0 5px; }
+    .text-input, .select-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--slate-200);
+      background: var(--bg);
+      font-size: 13.5px;
+      color: var(--slate-900);
+    }
+    .primary-btn {
+      width: 100%;
+      background: var(--crimson);
+      color: #fff;
+      border: none;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+    .teal-btn {
+      width: 100%;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .mode-switch {
+      display: flex;
+      background: var(--slate-200);
+      padding: 4px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+    .mode-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 9px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate-600);
+      cursor: pointer;
+    }
+    .mode-btn.active { background: var(--surface); color: var(--crimson); font-weight: 800; }
+    .track-item {
+      background: var(--surface);
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 13px;
+      margin-bottom: 10px;
+    }
     .disclaimer {
       background: var(--slate-100);
       border-top: 1px solid var(--slate-200);
@@ -156,7 +228,7 @@
     <!-- Header -->
     <div class="app-header">
       <div class="brand-row">
-        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+        <svg width="38" height="38" viewBox="0 0 64 64" fill="none">
           <rect x="4" y="4" width="56" height="56" rx="14" fill="#D92D20"/>
           <path d="M32 11C32 11 17 27.2 17 38.5C17 46.7843 23.7157 53.5 32 53.5C40.2843 53.5 47 46.7843 47 38.5C47 27.2 32 11 32 11Z" fill="#FFFFFF"/>
           <path d="M32 25V45M23 35H41" stroke="#D92D20" stroke-width="4.2" stroke-linecap="round"/>
@@ -167,10 +239,13 @@
           <div class="brand-tagline">Know Your Type. Protect Your Future.</div>
         </div>
       </div>
-      <div class="active-pill" onclick="switchTab('idcard')">
-        <span class="bg-txt" id="header-bg">O-</span>
-        <span style="color:#FECDCA">|</span>
-        <span class="gt-txt" id="header-gt">AS</span>
+      <div class="header-actions" id="header-actions">
+        <div class="active-pill" onclick="switchTab('idcard')">
+          <span class="bg-txt" id="header-bg">O-</span>
+          <span style="color:#FECDCA">|</span>
+          <span class="gt-txt" id="header-gt">AS</span>
+        </div>
+        <button class="logout-btn" id="auth-top-btn" onclick="switchTab('auth')">Account</button>
       </div>
     </div>
 
@@ -178,7 +253,11 @@
     <div class="viewport" id="viewport"></div>
 
     <!-- Bottom Tab Navigation -->
-    <div class="tab-bar">
+    <div class="tab-bar" id="tab-bar">
+      <button class="tab-btn" id="tab-auth" onclick="switchTab('auth')">
+        <span class="tab-badge">USER</span>
+        <span class="tab-label">Account</span>
+      </button>
       <button class="tab-btn active" id="tab-transfusion" onclick="switchTab('transfusion')">
         <span class="tab-badge">ABO</span>
         <span class="tab-label">Transfusion</span>
@@ -187,13 +266,17 @@
         <span class="tab-badge">DNA</span>
         <span class="tab-label">Genotype</span>
       </button>
+      <button class="tab-btn" id="tab-tracks" onclick="switchTab('tracks')">
+        <span class="tab-badge">LOG</span>
+        <span class="tab-label">Tracks</span>
+      </button>
       <button class="tab-btn" id="tab-idcard" onclick="switchTab('idcard')">
         <span class="tab-badge">ICE</span>
         <span class="tab-label">Bloodin ID</span>
       </button>
       <button class="tab-btn" id="tab-learn" onclick="switchTab('learn')">
         <span class="tab-badge">LAB</span>
-        <span class="tab-label">Lab & Guide</span>
+        <span class="tab-label">Lab Hub</span>
       </button>
     </div>
   </div>
@@ -201,6 +284,13 @@
   <script>
     const BLOOD_GROUPS = ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'];
     const GENOTYPES = ['AA', 'AS', 'AC', 'SS', 'SC', 'CC'];
+    const TRACK_CATEGORIES = [
+      'Hb Level (g/dL)',
+      'Blood Donation',
+      'Hydration & Wellness',
+      'Pain / Crisis Log',
+      'Lab / Electrophoresis'
+    ];
 
     const BLOOD_MAP = {
       'O-': { donate: ['O-','O+','A-','A+','B-','B+','AB-','AB+'], receive: ['O-'], note: 'Universal Red Cell Donor. Lacks A, B, and RhD surface antigens.' },
@@ -214,11 +304,78 @@
     };
 
     let state = {
-      tab: 'transfusion',
+      tab: 'auth',
+      authMode: 'login',
+      authError: '',
+      authNotice: '',
+      token: localStorage.getItem('bloodin_token') || null,
+      user: {
+        name: 'Amara Okafor',
+        email: 'amara@bloodin.health',
+        bloodGroup: 'O-',
+        genotype: 'AS',
+        allergies: 'Penicillin, Latex',
+        emergencyContactName: 'Dr. Tunde Okafor (Spouse)',
+        emergencyContactPhone: '+1 (555) 234-8910'
+      },
+      signupBg: 'O-',
+      signupGt: 'AS',
       selectedBg: 'O-',
       partnerA: 'AS',
-      partnerB: 'AS'
+      partnerB: 'AS',
+      tracks: []
     };
+
+    async function bootSession() {
+      if (state.token) {
+        try {
+          const res = await fetch('/api/me', {
+            headers: { 'Authorization': 'Bearer ' + state.token }
+          });
+          if (res.ok) {
+            const data = await res.json();
+            applyAuthenticatedUser(data.user, data.tracks, state.token);
+            return;
+          }
+        } catch (e) {}
+      }
+      // Auto-login demo account so tracks database is immediately live, while keeping Log In / Sign Up accessible
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: 'amara@bloodin.health', password: 'bloodin123' })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          applyAuthenticatedUser(data.user, data.tracks, data.token);
+        }
+      } catch (e) {}
+      render();
+    }
+
+    function applyAuthenticatedUser(user, tracks, token) {
+      state.user = user;
+      state.tracks = tracks || [];
+      state.token = token;
+      state.selectedBg = user.bloodGroup;
+      state.partnerA = user.genotype;
+      localStorage.setItem('bloodin_token', token);
+      document.getElementById('header-bg').textContent = user.bloodGroup;
+      document.getElementById('header-gt').textContent = user.genotype;
+      document.getElementById('auth-top-btn').textContent = user.name.split(' ')[0];
+      render();
+    }
+
+    function logoutUser() {
+      state.token = null;
+      localStorage.removeItem('bloodin_token');
+      state.authMode = 'login';
+      state.authNotice = 'Signed out. Log in or create a new Bloodin account below.';
+      state.tab = 'auth';
+      document.getElementById('auth-top-btn').textContent = 'Log In';
+      render();
+    }
 
     function normalizeAllele(a, b) {
       const order = { A: 1, S: 2, C: 3 };
@@ -227,9 +384,120 @@
 
     function switchTab(tab) {
       state.tab = tab;
+      state.authError = '';
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + tab).classList.add('active');
+      const btn = document.getElementById('tab-' + tab);
+      if (btn) btn.classList.add('active');
       render();
+    }
+
+    function setAuthMode(mode) {
+      state.authMode = mode;
+      state.authError = '';
+      state.authNotice = '';
+      render();
+    }
+
+    async function handleLoginSubmit() {
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      state.authError = '';
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          state.authError = data.error || 'Invalid login credentials.';
+          render();
+          return;
+        }
+        state.authNotice = 'Logged in successfully!';
+        applyAuthenticatedUser(data.user, data.tracks, data.token);
+        switchTab('tracks');
+      } catch (e) {
+        state.authError = 'Could not connect to Bloodin database.';
+        render();
+      }
+    }
+
+    async function handleSignupSubmit() {
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const allergies = document.getElementById('signup-allergies').value.trim();
+      const emergencyContactName = document.getElementById('signup-ice-name').value.trim();
+      const emergencyContactPhone = document.getElementById('signup-ice-phone').value.trim();
+
+      state.authError = '';
+      try {
+        const res = await fetch('/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            bloodGroup: state.signupBg,
+            genotype: state.signupGt,
+            allergies,
+            emergencyContactName,
+            emergencyContactPhone
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          state.authError = data.error || 'Sign up failed.';
+          render();
+          return;
+        }
+        state.authNotice = 'Account created and saved to Bloodin database!';
+        applyAuthenticatedUser(data.user, data.tracks, data.token);
+        switchTab('tracks');
+      } catch (e) {
+        state.authError = 'Could not connect to Bloodin database.';
+        render();
+      }
+    }
+
+    async function handleAddTrack() {
+      const category = document.getElementById('track-cat').value;
+      const title = document.getElementById('track-title').value.trim();
+      const value = document.getElementById('track-val').value.trim();
+      const notes = document.getElementById('track-notes').value.trim();
+      if (!title || !value) return;
+
+      try {
+        const res = await fetch('/api/tracks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + state.token
+          },
+          body: JSON.stringify({ category, title, value, notes })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          state.tracks = data.tracks;
+          render();
+        }
+      } catch (e) {}
+    }
+
+    async function handleDeleteTrack(id) {
+      try {
+        const res = await fetch('/api/tracks/' + id, {
+          method: 'DELETE',
+          headers: { 'Authorization': 'Bearer ' + state.token }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          state.tracks = data.tracks;
+          render();
+        }
+      } catch (e) {}
     }
 
     function selectBg(bg) {
@@ -248,7 +516,108 @@
       const vp = document.getElementById('viewport');
       const disclaimer = `<div class="disclaimer"><strong>CLINICAL GUIDANCE NOTE:</strong> Bloodin results are for educational and planning purposes only and must be confirmed via laboratory testing (such as Hemoglobin Electrophoresis).</div>`;
 
-      if (state.tab === 'transfusion') {
+      if (state.tab === 'auth') {
+        vp.innerHTML = `
+          <div class="h2">Bloodin Account & Profile</div>
+          <div class="sub">Sign up or log in to sync your Blood Group, Genotype, and Personal Health Tracks to the database.</div>
+
+          ${state.token ? `
+            <div class="card" style="background:#F0FDF9;border-color:#99F6E0;display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:10px;font-weight:800;color:#0A7569">SIGNED IN AS</div>
+                <div style="font-size:15px;font-weight:900;color:#0F172A">${state.user.name}</div>
+                <div style="font-size:11.5px;color:#475569">${state.user.email} • <strong>${state.user.bloodGroup} / ${state.user.genotype}</strong></div>
+              </div>
+              <button class="logout-btn" style="background:#FEF3F2;color:#B42318;border-color:#FECDCA" onclick="logoutUser()">Sign Out</button>
+            </div>
+          ` : ''}
+
+          <div class="mode-switch">
+            <button class="mode-btn ${state.authMode === 'login' ? 'active' : ''}" onclick="setAuthMode('login')">Log In</button>
+            <button class="mode-btn ${state.authMode === 'signup' ? 'active' : ''}" onclick="setAuthMode('signup')">Sign Up</button>
+          </div>
+
+          <div class="card">
+            ${state.authError ? `<div style="background:#FEF3F2;border:1px solid #FECDCA;color:#B42318;padding:10px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:10px">${state.authError}</div>` : ''}
+            ${state.authNotice ? `<div style="background:#F0FDF9;border:1px solid #99F6E0;color:#0A7569;padding:10px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:10px">${state.authNotice}</div>` : ''}
+
+            ${state.authMode === 'login' ? `
+              <label class="input-label">Email Address</label>
+              <input id="login-email" class="text-input" type="email" value="amara@bloodin.health" placeholder="you@bloodin.health" />
+              <label class="input-label">Password</label>
+              <input id="login-password" class="text-input" type="password" value="bloodin123" placeholder="••••••••" />
+              <button class="primary-btn" onclick="handleLoginSubmit()">Log In to Bloodin</button>
+              <div style="font-size:11px;color:#64748B;text-align:center;margin-top:10px">Demo credentials pre-filled (amara@bloodin.health / bloodin123)</div>
+            ` : `
+              <label class="input-label">Full Name</label>
+              <input id="signup-name" class="text-input" type="text" placeholder="e.g. David Mensah" />
+              <label class="input-label">Email Address</label>
+              <input id="signup-email" class="text-input" type="email" placeholder="david@example.com" />
+              <label class="input-label">Create Password</label>
+              <input id="signup-password" class="text-input" type="password" placeholder="At least 6 characters" />
+
+              <label class="input-label">Select Blood Group (ABO/Rh)</label>
+              <div class="grid-4" style="margin-bottom:8px">
+                ${BLOOD_GROUPS.map(bg => `<button type="button" class="choice-btn ${state.signupBg === bg ? 'selected-crimson' : ''}" onclick="state.signupBg='${bg}';render()">${bg}</button>`).join('')}
+              </div>
+
+              <label class="input-label">Select Hemoglobin Genotype</label>
+              <div class="grid-6" style="margin-bottom:8px">
+                ${GENOTYPES.map(gt => `<button type="button" class="choice-btn ${state.signupGt === gt ? 'selected-teal' : ''}" onclick="state.signupGt='${gt}';render()">${gt}</button>`).join('')}
+              </div>
+
+              <label class="input-label">Known Allergies</label>
+              <input id="signup-allergies" class="text-input" type="text" placeholder="e.g. Penicillin, or None Known (NKDA)" />
+
+              <label class="input-label">Emergency Contact Name & Phone</label>
+              <input id="signup-ice-name" class="text-input" type="text" placeholder="Contact Name (e.g. Sarah Mensah)" style="margin-bottom:6px" />
+              <input id="signup-ice-phone" class="text-input" type="text" placeholder="Contact Phone (e.g. +1 555-839-2001)" />
+
+              <button class="primary-btn" onclick="handleSignupSubmit()">Create Bloodin Account</button>
+            `}
+          </div>
+          ${disclaimer}
+        `;
+      } else if (state.tab === 'tracks') {
+        vp.innerHTML = `
+          <div class="h2">Personal Health Tracks</div>
+          <div class="sub">Database-backed log for <strong>${state.user.name}</strong>'s hemoglobin levels, blood donations, hydration, and electrophoresis tests.</div>
+
+          <div class="card">
+            <div style="font-size:14px;font-weight:800;margin-bottom:6px">Log New Health Track</div>
+            <label class="input-label">Track Category</label>
+            <select id="track-cat" class="select-input">
+              ${TRACK_CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join('')}
+            </select>
+            <label class="input-label">Title / Activity</label>
+            <input id="track-title" class="text-input" type="text" placeholder="e.g. Routine Hemoglobin Check or Whole Blood Donation" />
+            <label class="input-label">Measured Value / Result</label>
+            <input id="track-val" class="text-input" type="text" placeholder="e.g. 13.8 g/dL or 450 mL Unit" />
+            <label class="input-label">Clinical Notes (Optional)</label>
+            <input id="track-notes" class="text-input" type="text" placeholder="e.g. Feeling well hydrated, taking daily folic acid" />
+            <button class="teal-btn" onclick="handleAddTrack()">+ Save Track to Database</button>
+          </div>
+
+          <div style="font-size:15px;font-weight:800;margin-bottom:10px">Saved Personal Tracks (${state.tracks.length})</div>
+          ${state.tracks.map(t => `
+            <div class="track-item">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+                <span style="background:#FEF3F2;color:#D92D20;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px">${t.category}</span>
+                <span style="font-size:11px;color:#64748B;font-weight:600">${t.recordedAt}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                <div style="font-size:14px;font-weight:800;color:#0F172A">${t.title}</div>
+                <div style="font-size:13.5px;font-weight:900;color:#0A7569">${t.value}</div>
+              </div>
+              ${t.notes ? `<div style="font-size:12px;color:#475569;line-height:1.4">${t.notes}</div>` : ''}
+              <div style="text-align:right;margin-top:6px">
+                <button style="background:none;border:none;color:#94A3B8;font-size:11px;font-weight:700;cursor:pointer" onclick="handleDeleteTrack('${t.id}')">Delete</button>
+              </div>
+            </div>
+          `).join('')}
+          ${disclaimer}
+        `;
+      } else if (state.tab === 'transfusion') {
         const info = BLOOD_MAP[state.selectedBg];
         vp.innerHTML = `
           <div class="h2">Blood Transfusion Checker</div>
@@ -329,7 +698,7 @@
       } else if (state.tab === 'idcard') {
         vp.innerHTML = `
           <div class="h2">Bloodin Digital Emergency ID</div>
-          <div class="sub">High-contrast lock-screen-ready medical card.</div>
+          <div class="sub">High-contrast lock-screen-ready medical card synced with your account.</div>
           <div style="background:#0F172A;border-radius:20px;overflow:hidden;border:2px solid #D92D20;color:#fff">
             <div style="background:#D92D20;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
               <div style="font-weight:900;font-size:14px;letter-spacing:0.6px">BLOODIN EMERGENCY ID</div>
@@ -337,24 +706,24 @@
             </div>
             <div style="padding:18px">
               <div style="font-size:10px;color:#94A3B8;font-weight:800">PATIENT NAME</div>
-              <div style="font-size:22px;font-weight:900;margin-bottom:14px">Amara Okafor</div>
+              <div style="font-size:22px;font-weight:900;margin-bottom:14px">${state.user.name}</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
                 <div style="background:#D92D20;padding:12px;border-radius:12px;text-align:center">
                   <div style="font-size:10px;font-weight:800">BLOOD TYPE</div>
-                  <div style="font-size:32px;font-weight:900">${state.selectedBg}</div>
+                  <div style="font-size:32px;font-weight:900">${state.user.bloodGroup}</div>
                 </div>
                 <div style="background:#0E9384;padding:12px;border-radius:12px;text-align:center">
                   <div style="font-size:10px;font-weight:800">GENOTYPE</div>
-                  <div style="font-size:32px;font-weight:900">${state.partnerA}</div>
+                  <div style="font-size:32px;font-weight:900">${state.user.genotype}</div>
                 </div>
               </div>
               <div style="background:#1E293B;padding:10px 12px;border-radius:10px;margin-bottom:10px">
                 <div style="font-size:9.5px;color:#94A3B8;font-weight:800">ALLERGIES</div>
-                <div style="font-size:13px;color:#FCA5A5;font-weight:800">Penicillin, Latex</div>
+                <div style="font-size:13px;color:#FCA5A5;font-weight:800">${state.user.allergies}</div>
               </div>
               <div style="background:#1E293B;padding:10px 12px;border-radius:10px">
                 <div style="font-size:9.5px;color:#94A3B8;font-weight:800">EMERGENCY CONTACT</div>
-                <div style="font-size:13px;font-weight:700">Dr. Tunde Okafor • +1 (555) 234-8910</div>
+                <div style="font-size:13px;font-weight:700">${state.user.emergencyContactName} • ${state.user.emergencyContactPhone}</div>
               </div>
             </div>
           </div>
@@ -379,7 +748,7 @@
       }
     }
 
-    render();
+    bootSession();
   </script>
 </body>
 </html>

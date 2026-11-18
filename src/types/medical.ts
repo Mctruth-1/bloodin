@@ -14,6 +14,36 @@ export interface UserProfile {
   isPrimary?: boolean;
 }
 
+export type HealthTrackCategory =
+  | 'Hb Level (g/dL)'
+  | 'Blood Donation'
+  | 'Hydration & Wellness'
+  | 'Pain / Crisis Log'
+  | 'Lab / Electrophoresis';
+
+export interface PersonalHealthTrack {
+  id: string;
+  userId: string;
+  category: HealthTrackCategory;
+  title: string;
+  value: string;
+  notes: string;
+  recordedAt: string;
+}
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  email: string;
+  bloodGroup: BloodGroup;
+  genotype: Genotype;
+  allergies: string;
+  emergencyContactName: string;
+  emergencyContactPhone: string;
+  createdAt: string;
+}
+
+
 export interface BloodCompatibilityProfile {
   bloodGroup: BloodGroup;
   canDonateTo: BloodGroup[];

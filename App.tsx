@@ -9,26 +9,44 @@ import {
 } from 'react-native';
 import { BloodinProvider, useBloodin } from './src/context/BloodinContext';
 import { BloodinLogo } from './src/components/BloodinLogo';
+import { AuthScreen } from './src/screens/AuthScreen';
 import { ProfileSetupScreen } from './src/screens/ProfileSetupScreen';
 import { TransfusionCheckerScreen } from './src/screens/TransfusionCheckerScreen';
 import { GenotypeCalculatorScreen } from './src/screens/GenotypeCalculatorScreen';
+import { PersonalTracksScreen } from './src/screens/PersonalTracksScreen';
 import { EmergencyCardScreen } from './src/screens/EmergencyCardScreen';
 import { EducationLabHubScreen } from './src/screens/EducationLabHubScreen';
 import { APP_IDENTITY, COLORS } from './src/constants/theme';
 
-type TabKey = 'profile' | 'transfusion' | 'genotype' | 'idcard' | 'learn';
+type TabKey =
+  | 'profile'
+  | 'transfusion'
+  | 'genotype'
+  | 'tracks'
+  | 'idcard'
+  | 'learn';
 
 const TABS: { key: TabKey; label: string; shortBadge: string }[] = [
   { key: 'profile', label: 'Profiles', shortBadge: 'USER' },
   { key: 'transfusion', label: 'Transfusion', shortBadge: 'ABO' },
   { key: 'genotype', label: 'Genotype', shortBadge: 'DNA' },
+  { key: 'tracks', label: 'Tracks', shortBadge: 'LOG' },
   { key: 'idcard', label: 'Bloodin ID', shortBadge: 'ICE' },
-  { key: 'learn', label: 'Lab & Guide', shortBadge: 'LAB' },
+  { key: 'learn', label: 'Lab Hub', shortBadge: 'LAB' },
 ];
 
 const BloodinShell: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabKey>('profile');
-  const { activeProfile } = useBloodin();
+  const [activeTab, setActiveTab] = useState<TabKey>('transfusion');
+  const { currentUser, activeProfile, logout } = useBloodin();
+
+  if (!currentUser) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <StatusBar barStyle="dark-content" backgroundColor={COLORS.surface} />
+        <AuthScreen />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -44,14 +62,23 @@ const BloodinShell: React.FC = () => {
           </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.activeUserPill}
-          onPress={() => setActiveTab('idcard')}
-        >
-          <Text style={styles.activeUserBlood}>{activeProfile.bloodGroup}</Text>
-          <View style={styles.pillDivider} />
-          <Text style={styles.activeUserGenotype}>{activeProfile.genotype}</Text>
-        </TouchableOpacity>
+        <View style={styles.headerRight}>
+          <TouchableOpacity
+            style={styles.activeUserPill}
+            onPress={() => setActiveTab('idcard')}
+          >
+            <Text style={styles.activeUserBlood}>
+              {activeProfile.bloodGroup}
+            </Text>
+            <View style={styles.pillDivider} />
+            <Text style={styles.activeUserGenotype}>
+              {activeProfile.genotype}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.logoutBtn} onPress={logout}>
+            <Text style={styles.logoutText}>Out</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Main Screen Content */}
@@ -64,6 +91,7 @@ const BloodinShell: React.FC = () => {
         )}
         {activeTab === 'transfusion' && <TransfusionCheckerScreen />}
         {activeTab === 'genotype' && <GenotypeCalculatorScreen />}
+        {activeTab === 'tracks' && <PersonalTracksScreen />}
         {activeTab === 'idcard' && <EmergencyCardScreen />}
         {activeTab === 'learn' && <EducationLabHubScreen />}
       </View>
@@ -123,7 +151,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     paddingVertical: 12,
     backgroundColor: COLORS.surface,
     borderBottomWidth: 1,
@@ -144,9 +172,14 @@ const styles = StyleSheet.create({
     letterSpacing: -0.3,
   },
   tagline: {
-    fontSize: 11,
+    fontSize: 10.5,
     fontWeight: '600',
     color: COLORS.slate500,
+  },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
   activeUserPill: {
     flexDirection: 'row',
@@ -174,6 +207,17 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: COLORS.teal,
   },
+  logoutBtn: {
+    backgroundColor: COLORS.slate100,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 8,
+  },
+  logoutText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: COLORS.slate600,
+  },
   mainViewport: {
     flex: 1,
     backgroundColor: COLORS.background,
@@ -184,7 +228,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: COLORS.slate200,
     paddingVertical: 8,
-    paddingHorizontal: 6,
+    paddingHorizontal: 4,
   },
   tabItem: {
     flex: 1,
@@ -192,7 +236,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabIconBadge: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 8,
     backgroundColor: COLORS.slate100,
@@ -202,7 +246,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.crimson,
   },
   tabBadgeText: {
-    fontSize: 10,
+    fontSize: 9.5,
     fontWeight: '800',
     color: COLORS.slate600,
   },
@@ -210,7 +254,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   tabLabel: {
-    fontSize: 10.5,
+    fontSize: 10,
     fontWeight: '600',
     color: COLORS.slate500,
   },
